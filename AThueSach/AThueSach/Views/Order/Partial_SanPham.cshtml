@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AThueSach.Models.OrderDetail>
+
+@if (Model != null && Model.Any())
+{
+    int i = 1;
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>  </td>
+                <td> <strong>Tên sách</strong> </td>
+                <td> <strong>Giá thuê</strong> </td>
+                <td> <strong>Thành tiền</strong> </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@i</td>
+                    <td>@item.Product.NamePro</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@(item.UnitPrice * item.Quantity) </td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AThueSach.Models.OrderPro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Thuê sách</title>
+<div class="card" style="margin: 24px">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <h5 class="card-header" style="margin-right: 10%">Danh Sách Thuê - Trả Sách</h5>
+                </th>
+                <th style="text-align:right ; padding-right:28px">
+                    <a href="/Order/ShowCart" class="btn btn-outline-primary"> Thuê sách</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align:center">
+                        <td> <strong> ID</strong> </td>
+                        <td> <strong> Ngày thuê sách</strong> </td>
+                        <td> <strong> Tên khách hàng</strong> </td>
+                        <td> <strong> Số điện thoại</strong> </td>
+                        <td> <strong>Trạng thái</strong> </td>
+                        <td> <strong>Action</strong> </td>
+
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameCus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneCus)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Cập nhật", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) 
+                            @Html.ActionLink("Chi tiết", "Detail", new { id = item.ID }, new { @class = "btn btn-warning" }) 
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+

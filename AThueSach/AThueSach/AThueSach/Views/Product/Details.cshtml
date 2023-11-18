@@ -1,0 +1,47 @@
+﻿@model AThueSach.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-left:70px; margin-top: 30px">
+    <div class="col-lg-5" id="imgpro">
+        <h3>CHI TIẾT SẢN PHẨM</h3>
+        <img src="~/Content/Images/@Model.ImagePro" alt="Alternate Text" height="350" />
+    </div>
+
+    <h2>Chi tiết Product</h2>
+
+    <div style="width:800px"><hr /></div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductID):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DecriptionPro):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <img />
+
+    </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="btn btn-outline-dark">
+                @Html.ActionLink("Cập nhật", "Edit", new { id = Model.ProductID })
+            </div> |
+            <div class="btn btn-outline-dark">
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+//Sửa
+

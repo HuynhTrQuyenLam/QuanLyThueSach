@@ -1,0 +1,69 @@
+﻿@model AThueSach.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <h3 class="card-header" style="text-align:center">Thêm sách</h3>
+                <div class="card-body">
+                    <div class="row gy-3">
+                        <div class="col-md">
+                            <div class="mb-3">
+                                <h6>Tên sách</h6>
+                                @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="mb-3">
+                                <h6>Mô tả</h6>
+                                @Html.EditorFor(model => model.DecriptionPro, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "textarea" })
+                            </div>
+                            <div class="mb-3">
+                                <h6>Đầu sách</h6>
+                                @Html.DropDownListFor(model => model.Category, (SelectList)ViewBag.listCategory, new { @class = "form-select", id = "exampleFormControlSelect1", aria_label = "Default select example" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="mb-3">
+                                <h6>Giá sách</h6>
+                                <input type="number" min="0" @Html.EditorFor(model => model.PriceHire, new { htmlAttributes = new { @class = "form-control" } })
+                                       @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="mb-3">
+                                <h6>Giá thuê</h6>
+                                <input type="number" min="0" @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                       @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="mb-3">
+                                <h6>Hình ảnh</h6>
+                                <input class="form-control" name="UploadImage" type="file" id="formFile" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+                            </div>
+                            <div class="mb-3">
+                                <h6>Trạng thái</h6>
+                                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="StatusPro">
+                                    <option value="0">Có sẵn</option>
+                                    <option value="1">Đang cho thuê</option>
+                                    <option value="2">Mất</option>
+                                </select>
+                            </div>
+                            <div style="text-align:right">
+                                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                                <div class="btn btn-outline-dark">
+                                    @Html.ActionLink("Quay lại", "Index")
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+

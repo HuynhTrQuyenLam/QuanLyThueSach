@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AThueSach.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Thống kê sách thuê - trả</title>
+<div class="card" style="margin: 24px">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <h5 class="card-header" style="margin-right: 10%">Thống kê sách thuê - trả</h5>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align:center">
+                        <th>STT</th>
+                        <th>Mã sách</th>
+                        <th>Tên sách</th>
+                        <th>Giá thuê</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IDProduct)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NamePro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

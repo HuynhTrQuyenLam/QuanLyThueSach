@@ -1,0 +1,63 @@
+﻿@model AThueSach.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Chi tiết sách</title>
+<div class="col-md-6" style="margin:25px; width:96%">
+    <div class="card mb-4">
+        <h5 class="card-header" style="text-align:center">Chi tiết đầu sách</h5>
+        <div class="card-body">
+            <div class="mt-2 mb-3">
+                <h6>Mã sách</h6>
+                @Html.EditorFor(model => model.ProductID,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+
+            <div class="mt-2 mb-3">
+                <h6>Tên sách</h6>
+                @Html.EditorFor(model => model.NamePro,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Mô tả</h6>
+                <textarea style="padding-bottom: 50px; padding-top: 50px " id="basic-default-message" class="form-control" disabled="disabled">
+                    @Model.DecriptionPro
+                </textarea>
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Đầu sách</h6>
+                @Html.EditorFor(model => model.Category1.NameCate,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Số lượng</h6>
+                @Html.EditorFor(model => model.Quantity,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Giá sách</h6>
+                @Html.EditorFor(model => model.Price,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Giá thuê</h6>
+                @Html.EditorFor(model => model.PriceHire,
+                    new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+            <div class="mt-2 mb-3">
+                <h6>Hình ảnh</h6>
+                <img src="~/Content/Images/@Model.ImagePro" style="height: 200px; width:150px" />
+            </div>
+
+            <div style="text-align:right">
+                <div class="btn btn-outline-dark">
+                    @Html.ActionLink("Quay lại", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

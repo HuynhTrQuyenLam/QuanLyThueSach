@@ -1,0 +1,38 @@
+﻿@model AThueSach.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-left:70px; margin-top: 30px">
+    <h2>Chi tiết Category</h2>
+    <div style="width:800px"><hr /></div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCate):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDCate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCate):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameCate)
+        </dd>
+
+    </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="btn btn-outline-dark">
+                @Html.ActionLink("Cập nhật", "Edit", new { id = Model.IDCate })
+            </div> |
+            <div class="btn btn-outline-dark">
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
+        </div>
+    </div>
+</div>

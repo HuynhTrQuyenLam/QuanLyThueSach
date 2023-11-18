@@ -1,0 +1,119 @@
+﻿    @model AThueSach.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Thuê sách</title>
+
+@using (Html.BeginForm("CheckOut", "Order"))
+{
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h3 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Thêm /</span> Thuê Sách</h3>
+        <!--  THÔNG TIN KH-->
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <h4 class="card-header">Thông tin khách hàng</h4>
+                <div class="card-body">
+                    <div class="row gy-3">
+                        <div class="col-md">
+                            <div class="mb-3">
+                                <h6>Tên khách hàng</h6>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Tên khách hàng"
+                                       name="NameCustomer"
+                                       required />
+                            </div>
+                            <div class="col-md">
+                                <div>
+                                    <div class="col-md-12">
+                                        <h6>Ngày thuê sách</h6>
+                                        <input class="form-control" type="date" value="" id="html5-date-input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="mb-3">
+                                <h6>Số điện thoại</h6>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Số điện thoại"
+                                       name="PhoneCustomer"
+                                       required />
+                            </div>
+                            <div class="col-md">
+                                <div>
+                                    <h6>Ngày dự kiến trả sách</h6>
+                                    <input class="form-control" type="date" value="" id="html5-date-input" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  BTN ADD-->
+        <div style="text-align:right">
+            <a href="/Order/Add" class="btn btn-primary">
+                <span class="tf-icons bx bx-plus"></span>&nbsp; Thêm sách
+            </a>
+        </div>
+        <!--  SÁCH-->
+        <div class="card" style="margin-top:2%">
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td> <strong>Tên sách</strong> </td>
+                                <td> <strong>Thể loại</strong> </td>
+                                <td> <strong>Hình</strong> </td>
+                                <td> <strong>Giá thuê</strong> </td>
+                                <td> <strong>Thành tiền</strong> </td>
+                                <td>  </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                decimal total = item._quantity * (decimal)item._product.Price.Value;
+                                decimal price = (decimal)item._product.Price.Value;
+
+                            <tr>
+                                
+                                <td> @Html.DisplayFor(model => item._product.NamePro)</td>
+                                <td> @Html.DisplayFor(model => item._product.Category1.NameCate)</td>
+                                <td> <img src="~/Content/Images/@item._product.ImagePro" width="100" height="110" /> </td>
+                                <td>@total.ToString("#,##0").Replace(',', '.') </td>
+                                <td> @total.ToString("#,##0").Replace(',', '.') </td>
+                                <td style="text-align:center">
+                                    <a href="~/Order/RemoveCart/@item._product.ProductID" class="btn btn-icon btn-outline-danger">
+                                        <span class="tf-icons bx bxs-trash-alt"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                        <thead style="height: 80px; line-height: 80px">
+                            <tr>
+                                <td colspan="6" style="text-align:right">
+                                    <h3>Tổng tiền: @Model.Total_money().ToString("#,##0").Replace(',', '.') Đồng </h3>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--  BTN THHUEE-->
+        <div style="margin-top:2%; text-align:center">
+            <button type="submit" class="btn btn-primary">Thuê</button>
+        </div>
+
+    </div>
+
+}

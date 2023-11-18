@@ -1,0 +1,82 @@
+﻿@model AThueSach.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin: 0px auto; width: 80%;">
+    <h1 style="margin-left: 50px; margin-top:20px">THÊM SẢN PHẨM MỚI</h1>
+    @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-horizontal" style="margin-left: 50px">
+            <div style="width: 650px"><hr /></div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Tên Sản Phẩm</b>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Mô tả</b>
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DecriptionPro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Loại Sản Phẩm</b>
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Category, (SelectList)ViewBag.listCategory)
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Số lượng</b>
+                </div>
+                <div class="col-md-10">
+                    <input type="number" min="1" @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Đơn giá</b>
+                </div>
+                <div class="col-md-10">
+                    <input type="number" min="0" @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    <b>Hình Sản Phẩm</b>
+                </div>
+                <div class="col-md-10">
+                    <input type="file" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-top: 10px">
+                    <input type="submit" value="Tạo mới" class="btn btn-outline-dark" style="float: right; margin-top: 5px" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

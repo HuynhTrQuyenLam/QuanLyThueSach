@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AThueSach.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Đầu sách</title>
+<div class="card" style="margin: 24px">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <h5 class="card-header" style="margin-right: 10%">Danh Sách Đầu Sách</h5>
+                </th>
+                <th style="text-align:right ; padding-right:28px">
+                    <a href="/Categories/Create" class="btn btn-outline-primary"> Thêm</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align:center">
+                        <th>Mã Đầu Sách</th>
+                        <th>Tên Đầu Sách</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IDCate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameCate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Cập nhật", "Edit", new { id = item.IDCate }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.IDCate }, new { @class = "btn btn-warning" }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.IDCate }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
